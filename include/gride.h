@@ -6,12 +6,14 @@
 
 class Grid : public Cell{
     private:
-        Position position;
+        vector<vector<Cell>> cell;
         int width;
         int height;
     public:
         Grid(int w, int h);
-        
+        void update();
+        vector<Cell> getCellNeighbors(int x, int y);
+
 };
 
 #endif //GRID_H

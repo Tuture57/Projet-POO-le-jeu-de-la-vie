@@ -9,6 +9,7 @@ class Cell : public Position{
         bool isAlive;
         Position position;
     public:
+        Cell();
         Cell(int x, int y);
         void updateState(bool state);
         bool getNextState(vector<Cell> neighbors);
