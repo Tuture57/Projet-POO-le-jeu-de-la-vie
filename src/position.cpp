@@ -1,4 +1,4 @@
-#include "Position.h"
+#include "position.h"
 
 using namespace std;
 
