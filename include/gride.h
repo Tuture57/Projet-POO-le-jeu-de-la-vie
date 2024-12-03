@@ -10,10 +10,8 @@ class Grid : public Cell{
         int width;
         int height;
     public:
-        Cell(int x, int y);
-        void updateState(bool state);
-        bool getNextState(vector<Cell> neighbors);
-        bool isAlive();
+        Grid(int w, int h);
+        
 };
 
 #endif //GRID_H
