@@ -11,7 +11,7 @@ class File{
         string filename;
     public:
         File();
-        File(string name);
+        File(string fname);
         Grid loadGrid();
         void saveGrid(Grid grid);
 };
