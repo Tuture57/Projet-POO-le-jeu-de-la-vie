@@ -3,6 +3,9 @@
 #include <fstream>
 #include <vector>
 
+//Choses a modifier :
+// - le nom du filename voir si string ca passe ou si il faut convertir en char
+// - Voir pour la structure des vecteurs avec les objets Cells a implémenter il faudrait revoir les méthodes
 
 File::File(string fname) : filename(fname) {}
 
