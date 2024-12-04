@@ -16,4 +16,4 @@ class File : public Grid{
         void saveGrid(Grid grid);
 };
 
-#endif //FILE_H
+#endif

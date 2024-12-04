@@ -16,4 +16,4 @@ class Grid : public Cell{
 
 };
 
-#endif //GRID_H
+#endif

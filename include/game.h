@@ -26,4 +26,4 @@ class Game : public Grid{
         bool isFinished();
 };
 
-#endif //GAME_H
+#endif

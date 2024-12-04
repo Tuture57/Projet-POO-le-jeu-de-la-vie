@@ -16,4 +16,4 @@ class Cell : public Position{
         bool isAlive();
 };
 
-#endif //CELL_H
+#endif
