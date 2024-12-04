@@ -4,7 +4,7 @@
 using namespace std;
 
 #include <string>
-#include "gride.h"
+#include "grid.h"
 
 enum SimulationMode{
     CONSOLE,

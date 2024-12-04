@@ -12,4 +12,4 @@ class Position{
         int getY(){}
 };
 
-#endif //POSITION_H
+#endif
