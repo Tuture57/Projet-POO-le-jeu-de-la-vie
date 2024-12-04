@@ -11,7 +11,7 @@ enum SimulationMode{
     GRAPHIC
 };
 
-class Game : public Grid{
+class Game{
     private:
         Grid grid;
         SimulationMode mode;
