@@ -4,7 +4,7 @@
 #include <vector>
 #include "position.h"
 
-class Cell : public Position{
+template class Cell : public Position{
     private:
         bool isAlive;
         Position position;
@@ -16,4 +16,4 @@ class Cell : public Position{
         bool isAlive();
 };
 
-#endif
+#endif //CELL_H
