@@ -6,7 +6,7 @@ using namespace std;
 #include <string>
 #include "grid.h"
 
-class File : public Grid{
+class File{
     private:
         string filename;
     public:

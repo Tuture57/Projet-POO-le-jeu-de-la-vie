@@ -4,7 +4,7 @@
 #include <vector>
 #include "cell.h"
 
-class Grid : public Cell{
+class Grid{
     private:
         vector<vector<Cell>> cell;
         int width;
