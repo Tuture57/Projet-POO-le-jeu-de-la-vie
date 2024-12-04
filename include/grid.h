@@ -10,6 +10,7 @@ class Grid : public Cell{
         int width;
         int height;
     public:
+        Grid();
         Grid(int w, int h);
         void update();
         vector<Cell> getCellNeighbors(int x, int y);
