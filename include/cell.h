@@ -11,9 +11,11 @@ class Cell {
     public:
         Cell();
         Cell(int x, int y);
+        int getCellX();
+        int getCellY();
         void updateState(bool state);
         bool getNextState(vector<Cell> neighbors);
-        bool isAlive();
+        bool getAlive();
 };
 
 #endif
