@@ -8,8 +8,8 @@ class Position{
     public:
         Position();
         Position(int x, int y);
-        int getX(){}
-        int getY(){}
+        int getX();
+        int getY();
 };
 
 #endif

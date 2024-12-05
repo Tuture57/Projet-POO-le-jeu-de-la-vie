@@ -7,7 +7,8 @@
 #include <vector>
 
 using namespace std;
-using namespace std::filesystem;
+namespace fs = std::filesystem;
+
 
 File::File(string fname) : filename(fname) {}
 
@@ -43,7 +44,7 @@ void File::saveGrid(Grid grid, int iteration) {
     string baseFileName = filename.substr(0, filename.find_last_of("."));
     string extension = filename.substr(filename.find_last_of("."));
 
-    create_directory(baseFileName+"_out");
+    fs::create_directory(baseFileName+"_out");
     string filename = baseFileName+"_out/"+baseFileName+"_out_"+to_string(iteration)+extension;
 
     ofstream gridFile(filename);

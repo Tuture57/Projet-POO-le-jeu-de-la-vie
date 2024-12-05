@@ -1,8 +1,7 @@
 #include "game.h"
 
 #include <stdexcept>
-#include <string>
-#include <windows.h>
+#include <chrono>
 #include <thread>
 #include <atomic>
 
@@ -15,7 +14,7 @@ Game::Game(string filename, SimulationMode mode, int iteration) : mode(mode), ma
 };
 
 void Game::startRenderThread() {
-    thread renderThread(RenderGrid);
+    thread renderThread = thread(&Game::RenderGrid, this);
     renderThread.detach();
 }
 
@@ -27,7 +26,7 @@ void Game::RenderGrid(){
     while(graphic.isOpen()){
         if (grid.update()){    
             graphic.render(grid);
-            Sleep(simulationSpeed);
+            std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(simulationSpeed * 1000)));
         }else{
             stopRenderThread();
         }
@@ -42,7 +41,7 @@ void Game::run(){
     } else if (mode == GRAPHIC) {
         startRenderThread();
         while(graphic.isOpen()){
-            simulationSpeed = graphic.handleEvents();
+            simulationSpeed = graphic.handleEvents(simulationSpeed);
         }
     } else {
         throw runtime_error("Wrong mode");

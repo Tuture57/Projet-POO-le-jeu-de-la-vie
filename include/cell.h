@@ -4,6 +4,8 @@
 #include <vector>
 #include "position.h"
 
+using namespace std;
+
 class Cell {
     private:
         bool isAlive;

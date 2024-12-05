@@ -3,16 +3,16 @@
 
 #include <SFML/Graphics.hpp>
 
-using namespace std, sf;
+using namespace std;
 
 class Graphic{
     private:
-        RenderWindow window;
+        sf::RenderWindow window;
         float cellSize;
     public:
         Graphic();
         Graphic(Grid grid, float cellSize);
-        ~graphic();
+        ~Graphic() = default;
         void render(Grid grid);
         float handleEvents(float simulationSpeed);
         bool isOpen();
