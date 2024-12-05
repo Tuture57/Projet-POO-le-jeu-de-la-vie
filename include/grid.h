@@ -11,10 +11,11 @@ class Grid{
         int height;
     public:
         Grid();
-        Grid(int w, int h);
+        Grid(int w, int h, vector<vector<Cell>> cell);
+        int getWidth();
+        int getHeight();
         void update();
-        vector<Cell> getCellNeighbors(int x, int y);
-
+        vector<Cell> getCellNeighbors(Cell cellNeighbors);
 };
 
 #endif
