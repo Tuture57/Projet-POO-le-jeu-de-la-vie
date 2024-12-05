@@ -13,20 +13,21 @@ File::File(string fname) : filename(fname) {}
 Grid File::loadGrid() {
     vector<vector<Cell>> cells;
     vector<Cell> line;
-    string l1;
+    string l;
     char ch;
+    int width, height;
     ifstream gridFile (filename);
     if (gridFile.is_open()) {
-        getline(gridFile,l1);
-        int pos = l1.find(' ');
-        int height = stoi(l1.substr(0,pos));
-        int width = (stoi(l1.substr(pos + 1))*2);
+        getline(gridFile,l);
+        int pos = l.find(' ');
+        height = stoi(l.substr(0,pos));
+        width = (stoi(l.substr(pos + 1))*2);
         for (int i = 0; i < height; i++) {
-            getline(gridFile,l1);
+            getline(gridFile,l);
             for (int j = 0; j < width; j++) {
-                ch = l1[j];
+                ch = l[j];
                 if (ch !=' ' && ch !='\n') {
-                    line.push_back(Cell(width, height, ch));
+                    line.push_back(Cell(j, i, ch - '0'));
                 }
             }
             cells.push_back(line);
@@ -39,7 +40,7 @@ Grid File::loadGrid() {
 
 void File::saveGrid(Grid grid) {
     ofstream gridFile (filename);
-    vector<vector<Cell>> cells = grid.cells();
+    vector<vector<Cell>> cells = grid.getCells();
     if (gridFile.is_open()) {
         gridFile << grid.getHeight() << " " << grid.getWidth() << endl;
         for (int i = 0; i < grid.getHeight(); i++) {
