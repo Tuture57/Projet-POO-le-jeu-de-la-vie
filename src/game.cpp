@@ -48,16 +48,3 @@ void Game::run(){
         throw runtime_error("Wrong mode");
     }
 };
-
-
-void Game::setSimulationSpeed(float speed){
-    
-};
-
-void Game::setSimulationSpeed(float speed){
-    
-}
-
-int Game::getCurrentIteration(){
-
-}

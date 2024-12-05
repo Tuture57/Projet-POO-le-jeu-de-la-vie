@@ -25,9 +25,9 @@ class Game{
         Game();
         Game(string filename, SimulationMode mode, int iteration);
         void run();
-        void setSimulationSpeed(float speed);
-        int getCurrentIteration();
-        bool isFinished();
+        void startRenderThread();
+        void stopRenderThread();
+        void RenderGrid();
 };
 
 #endif
