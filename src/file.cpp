@@ -2,11 +2,12 @@
 #include "grid.h"
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <filesystem>
 #include <vector>
 
-//Choses a modifier :
-// - le nom du filename voir si string ca passe ou si il faut convertir en char
-// - Voir pour la structure des vecteurs avec les objets Cells a implémenter il faudrait revoir les méthodes
+using namespace std;
+using namespace std::filesystem;
 
 File::File(string fname) : filename(fname) {}
 
@@ -38,14 +39,20 @@ Grid File::loadGrid() {
     return Grid(width, height, cells);
 }
 
-void File::saveGrid(Grid grid) {
-    ofstream gridFile (filename);
+void File::saveGrid(Grid grid, int iteration) {
+    string baseFileName = filename.substr(0, filename.find_last_of("."));
+    string extension = filename.substr(filename.find_last_of("."));
+
+    create_directory(baseFileName+"_out");
+    string filename = baseFileName+"_out/"+baseFileName+"_out_"+to_string(iteration)+extension;
+
+    ofstream gridFile(filename);
     vector<vector<Cell>> cells = grid.getCells();
     if (gridFile.is_open()) {
         gridFile << grid.getHeight() << " " << grid.getWidth() << endl;
         for (int i = 0; i < grid.getHeight(); i++) {
             for (int j = 0; j < grid.getWidth(); j++) {
-                gridFile << cells[i][j].isAlive();
+                gridFile << cells[i][j].getAlive();
                 if (j < grid.getWidth() - 1) {
                     gridFile << " ";
                 }

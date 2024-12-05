@@ -14,7 +14,8 @@ class Graphic{
         Graphic(Grid grid, float cellSize);
         ~graphic();
         void render(Grid grid);
-        int handleEvents(float simulationSpeed);
+        float handleEvents(float simulationSpeed);
+        bool isOpen();
 };
 
 #endif

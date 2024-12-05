@@ -30,12 +30,11 @@ void Graphic::render(Grid grid) {
     window.display();
 }
 
-int Graphic::handleEvents(float simulationSpeed) {
+float Graphic::handleEvents(float simulationSpeed) {
     Event event;
     while (window.pollEvent(event)) {
         if (event.type == Event::Closed) {
             window.close();
-            return -1;
         }
         if (event.key.code == Keyboard::Up) {
             simulationSpeed -= 0.1;
@@ -46,3 +45,6 @@ int Graphic::handleEvents(float simulationSpeed) {
     }
     return simulationSpeed;
  }
+
+bool Graphic::isOpen() {
+    return window.isOpen();
