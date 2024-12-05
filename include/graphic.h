@@ -5,16 +5,15 @@
 
 using namespace std, sf;
 
-class graphic{
+class Graphic{
     private:
         RenderWindow window;
-        Grid grid;
         float cellSize;
     public:
-        graphic();
-        graphic(Grid grid, float cellSize);
+        Graphic();
+        Graphic(Grid grid, float cellSize);
         ~graphic();
-        void render();
+        void render(Grid grid);
         void handleEvents();
 };
 
