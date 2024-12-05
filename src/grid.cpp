@@ -19,7 +19,7 @@ vector<vector<Cell>> Grid::getCells(){
     return cells;
 }
 
-void Grid::update(){
+bool Grid::update(){
     vector<vector<Cell>> newCells;
     vector<Cell> line;
     vector<Cell> cellNeighbors;
@@ -35,7 +35,12 @@ void Grid::update(){
         newCells.push_back(line);
         line.clear();
     }
-    cells = newCells;
+    if (cells == newCells){
+        return 0;
+    }else{
+        cells = newCells;
+        return 1;
+    }
 }
 
 vector<Cell> Grid::getCellNeighbors(Cell cell){

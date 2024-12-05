@@ -2,6 +2,8 @@
 
 #include <stdexcept>
 #include <string>
+#include <windows.h>
+#include <thread>
 
 using namespace std;
 
@@ -12,12 +14,13 @@ Game::Game(string filename, SimulationMode mode, int iteration) : mode(mode), ma
 void Game::run(){
     if (mode == CONSOLE){
         for (int i = 0; i < maxIteration; i++){
-            file.saveGrid(grid);
+            file.saveGrid(grid, i);
         }
     }else if (mode == GRAPHIC){
-        while(graphic.isOpen())
-            render(grid);
+        thread thread_obj(RenderGrid());
+        while(graphic.isOpen()){
             simulationSpeed = graphic.handleEvents();
+        }
 
     }else{
         throw runtime_error("Wrong mode");
@@ -29,9 +32,15 @@ void Game::setSimulationSpeed(float speed){
 }
 
 void Game::RenderGrid(){
-    grid.update();
-    render(grid);
+    while(graphic.isOpen()){
+        grid.update();
+        if (grid.update()){    
+            graphic.render(grid);
+            Sleep(simulationSpeed);
+        }else{
 
+        }
+    }
 }
 
 int Game::getCurrentIteration(){

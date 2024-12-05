@@ -15,7 +15,7 @@ class Grid{
         vector<vector<Cell>> getCells();
         int getWidth();
         int getHeight();
-        void update();
+        bool update();
         vector<Cell> getCellNeighbors(Cell cell);
 };
 
