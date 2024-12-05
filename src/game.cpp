@@ -54,6 +54,10 @@ void Game::RenderGrid(){
     }
 }
 
+void Game::setSimulationSpeed(float speed){
+    
+}
+
 int Game::getCurrentIteration(){
 
 }
