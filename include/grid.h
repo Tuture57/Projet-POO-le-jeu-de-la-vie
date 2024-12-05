@@ -6,12 +6,12 @@
 
 class Grid{
     private:
-        vector<vector<Cell>> cell;
+        vector<vector<Cell>> cells;
         int width;
         int height;
     public:
         Grid();
-        Grid(int w, int h, vector<vector<Cell>> cell);
+        Grid(int w, int h, vector<vector<Cell>> cells);
         int getWidth();
         int getHeight();
         void update();
