@@ -15,7 +15,7 @@ int Grid::getWidth(){
     return width;
 }
 
-vector<vector<Cell>> Grid::getCell(){
+vector<vector<Cell>> Grid::getCells(){
     return cells;
 }
 
