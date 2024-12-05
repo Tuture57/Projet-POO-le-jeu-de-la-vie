@@ -11,7 +11,7 @@ class Graphic{
         sf::RenderWindow window;
         float cellSize;
     public:
-        Graphic();
+        Graphic(const Grid& grid);
         ~Graphic() = default;
         void render(const Grid& grid);
         float handleEvents(float simulationSpeed);

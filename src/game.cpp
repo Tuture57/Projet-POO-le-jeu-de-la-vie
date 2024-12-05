@@ -1,8 +1,8 @@
 #include "game.h"
 
 #include <stdexcept>
-#include <chrono>
-#include <thread>
+// #include <chrono>
+// #include <thread>
 
 using namespace std;
 
@@ -19,25 +19,25 @@ Game::~Game(){
     }
 };
 
-void Game::startRenderThread() {
-    thread renderThread = thread(&Game::RenderGrid, this);
-    renderThread.detach();
-}
+// void Game::startRenderThread() {
+//     thread renderThread = thread(&Game::RenderGrid, this);
+//     renderThread.detach();
+// }
 
-void Game::stopRenderThread() {
-    running.store(false);
-}
+// void Game::stopRenderThread() {
+//     running.store(false);
+// }
 
-void Game::RenderGrid(){
-    while(graphic->isOpen()){
-        if (grid.update()){    
-            graphic->render(grid);
-            std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(simulationSpeed.load() * 1000)));
-        }else{
-            stopRenderThread();
-        }
-    }
-}
+// void Game::RenderGrid(){
+//     while(graphic->isOpen()){
+//         if (grid.update()){    
+//             graphic->render(grid);
+//             std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(simulationSpeed.load() * 1000)));
+//         }else{
+//             stopRenderThread();
+//         }
+//     }
+// }
 
 void Game::run(){
     if (mode == CONSOLE) {
@@ -46,16 +46,20 @@ void Game::run(){
             file.saveGrid(grid, i);
         }
     } else if (mode == GRAPHIC) {
-        graphic = new Graphic();
+        graphic = new Graphic(grid);
         simulationSpeed = 1.0f;
 
-        startRenderThread();
+        //startRenderThread();
         
         while(graphic->isOpen()){
             float newSpeed = graphic->handleEvents(simulationSpeed.load());
             simulationSpeed.store(newSpeed);
+            if (grid.update()){
+                graphic->render(grid);
+                sf::sleep(sf::seconds(simulationSpeed.load()));
+            }
         }
     } else {
         throw runtime_error("Wrong mode");
     }
-};
+}

@@ -1,8 +1,5 @@
 #include "grid.h"
 
-//width = j = x
-//height = i = y
-
 using namespace std;
 
 Grid::Grid() : width(0), height(0) {};

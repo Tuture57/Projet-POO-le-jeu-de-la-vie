@@ -28,28 +28,16 @@ int Cell::getCellY() const{
 bool Cell::getNextState(vector<Cell> neighbors){
     int x = position.getX();
     int y = position.getY();
-    int cpt;
+    int cpt = 0;
     for (int i = 0; i < neighbors.size(); i++){
         if (neighbors[i].getAlive()){
             cpt++;
         }
     }
     if (this->getAlive()){
-        if (cpt == 2 || cpt == 3){
-            return true;
-        } else if(cpt != 2 || cpt != 3){
-            return false;
-        }else{
-            throw invalid_argument("This state doesn't exist");
-        }
-    }else{
-        if (cpt == 2){
-            return true;
-        } else if(cpt != 3){
-            return false;
-        }else{
-            throw invalid_argument("This state doesn't exist");
-        }
+        return (cpt == 2 || cpt == 3);
+    } else {
+        return cpt == 3;
     }
 }
 

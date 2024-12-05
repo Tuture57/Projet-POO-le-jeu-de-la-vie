@@ -25,6 +25,7 @@ Grid File::loadGrid() {
         int pos = l.find(' ');
         height = stoi(l.substr(0,pos));
         width = stoi(l.substr(pos + 1));
+        
         for (int i = 0; i < height; i++) {
             getline(gridFile,l);
             int cellCol = 0;
