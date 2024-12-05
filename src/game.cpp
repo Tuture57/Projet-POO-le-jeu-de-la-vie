@@ -21,15 +21,10 @@ void Game::run(){
         while(graphic.isOpen()){
             simulationSpeed = graphic.handleEvents();
         }
-
     }else{
         throw runtime_error("Wrong mode");
     }
 };
-
-void Game::setSimulationSpeed(float speed){
-    
-}
 
 void Game::RenderGrid(){
     while(graphic.isOpen()){
@@ -41,6 +36,11 @@ void Game::RenderGrid(){
 
         }
     }
+}
+
+
+void Game::setSimulationSpeed(float speed){
+    
 }
 
 int Game::getCurrentIteration(){
