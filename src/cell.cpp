@@ -3,6 +3,8 @@
 
 using namespace std;
 
+Cell::Cell() : position(0, 0), isAlive(false) {};
+
 Cell::Cell(int x, int y, bool isAlive) : position(x, y), isAlive(isAlive) {};
 
 void Cell::updateState(bool state){
@@ -15,11 +17,11 @@ void Cell::updateState(bool state){
     }
 }
 
- int Cell::getCellX(){
+ int Cell::getCellX() const{
     return position.getX();
 }
 
-int Cell::getCellY(){
+int Cell::getCellY() const{
     return position.getY();
 }
 
@@ -27,7 +29,7 @@ bool Cell::getNextState(vector<Cell> neighbors){
     int x = position.getX();
     int y = position.getY();
     int cpt;
-    for (int i = 0; i < sizeof(neighbors); i++){
+    for (int i = 0; i < neighbors.size(); i++){
         if (neighbors[i].getAlive()){
             cpt++;
         }
@@ -51,6 +53,10 @@ bool Cell::getNextState(vector<Cell> neighbors){
     }
 }
 
-bool Cell::getAlive(){
+bool Cell::getAlive() const{
     return isAlive;
+}
+
+bool Cell::operator==(const Cell& c2) const{
+    return (getCellX() == c2.getCellX() && getCellY() == c2.getCellY() && getAlive() == c2.getAlive());
 }

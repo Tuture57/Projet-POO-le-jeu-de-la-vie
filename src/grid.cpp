@@ -5,17 +5,19 @@
 
 using namespace std;
 
+Grid::Grid() : width(0), height(0) {};
+
 Grid::Grid(int w, int h, vector<vector<Cell>> cells) : width(w), height(h), cells(cells) {};
 
-int Grid::getHeight(){
+int Grid::getHeight() const{
     return height;
 }
 
-int Grid::getWidth(){
+int Grid::getWidth() const{
     return width;
 }
 
-vector<vector<Cell>> Grid::getCells(){
+vector<vector<Cell>> Grid::getCells() const{
     return cells;
 }
 
@@ -47,20 +49,10 @@ vector<Cell> Grid::getCellNeighbors(Cell cell){
     int x = cell.getCellX();
     int y = cell.getCellY();
     vector<Cell> stock;
-    for (int i = y-1; i < y+2; i++){
-        if (i < 0 || i > height){
-            i++;
-        }else{
-            for (int j = x-1; j < x+2; j++){
-                if (j < 0 || j > width){
-                    j++;
-                }else{
-                    if (i == x && j == y){
-                        i++;
-                    }else{
-                        stock.push_back(cells[i][j]);
-                    }
-                }
+    for (int i = max(0, y-1); i <= min(height-1, y+1); i++) {
+        for (int j = max(0, x-1); j <= min(width-1, x+1); j++) {
+            if (!(i == y && j == x)) {
+                stock.push_back(cells[i][j]);
             }
         }
     }

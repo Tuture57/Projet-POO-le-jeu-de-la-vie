@@ -17,13 +17,14 @@ class Game{
     private:
         Grid grid;
         SimulationMode mode;
+        File file;
+        Graphic* graphic;
         int maxIteration;
         float simulationSpeed;
-        File file;
-        Graphic graphic;
     public:
         Game();
         Game(string filename, SimulationMode mode, int iteration);
+        ~Game();
         void run();
         void startRenderThread();
         void stopRenderThread();

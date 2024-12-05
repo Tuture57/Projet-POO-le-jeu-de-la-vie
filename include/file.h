@@ -12,6 +12,7 @@ class File{
     public:
         File();
         File(string fname);
+        ~File() = default;
         Grid loadGrid();
         void saveGrid(Grid grid, int iteration);
 };

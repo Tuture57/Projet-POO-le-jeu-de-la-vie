@@ -9,6 +9,7 @@
 using namespace std;
 namespace fs = std::filesystem;
 
+File::File() : filename("") {}
 
 File::File(string fname) : filename(fname) {}
 
@@ -23,13 +24,16 @@ Grid File::loadGrid() {
         getline(gridFile,l);
         int pos = l.find(' ');
         height = stoi(l.substr(0,pos));
-        width = (stoi(l.substr(pos + 1))*2);
+        width = stoi(l.substr(pos + 1));
         for (int i = 0; i < height; i++) {
             getline(gridFile,l);
-            for (int j = 0; j < width; j++) {
+            int cellCol = 0;
+
+            for (int j = 0; j < l.length() && cellCol < width; j++) {
                 ch = l[j];
                 if (ch !=' ' && ch !='\n') {
-                    line.push_back(Cell(j, i, ch - '0'));
+                    line.push_back(Cell(cellCol, i, ch - '0'));
+                    cellCol++;
                 }
             }
             cells.push_back(line);

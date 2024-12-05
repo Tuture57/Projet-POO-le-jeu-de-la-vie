@@ -13,11 +13,13 @@ class Cell {
     public:
         Cell();
         Cell(int x, int y, bool isAlive);
-        int getCellX();
-        int getCellY();
+        ~Cell() = default;
+        int getCellX() const;
+        int getCellY() const;
         void updateState(bool state);
         bool getNextState(vector<Cell> neighbors);
-        bool getAlive();
+        bool getAlive() const;
+        bool operator==(const Cell& c2) const;
 };
 
 #endif

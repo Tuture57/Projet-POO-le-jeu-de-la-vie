@@ -9,8 +9,15 @@ using namespace std;
 
 atomic<bool> running(true);
 
-Game::Game(string filename, SimulationMode mode, int iteration) : mode(mode), maxIteration(iteration) {
+Game::Game(string filename, SimulationMode mode, int iteration) : mode(mode), maxIteration(iteration), graphic(nullptr){
     file = File(filename);
+    grid = file.loadGrid();
+};
+
+Game::~Game(){
+    if (graphic != nullptr){
+        delete graphic;
+    }
 };
 
 void Game::startRenderThread() {
@@ -23,9 +30,9 @@ void Game::stopRenderThread() {
 }
 
 void Game::RenderGrid(){
-    while(graphic.isOpen()){
+    while(graphic->isOpen()){
         if (grid.update()){    
-            graphic.render(grid);
+            graphic->render(grid);
             std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(simulationSpeed * 1000)));
         }else{
             stopRenderThread();
@@ -36,12 +43,17 @@ void Game::RenderGrid(){
 void Game::run(){
     if (mode == CONSOLE) {
         for (int i = 0; i < maxIteration; i++){
+            grid.update();
             file.saveGrid(grid, i);
         }
     } else if (mode == GRAPHIC) {
+        graphic = new Graphic();
+        simulationSpeed = 1.0f;
+
         startRenderThread();
-        while(graphic.isOpen()){
-            simulationSpeed = graphic.handleEvents(simulationSpeed);
+        
+        while(graphic->isOpen()){
+            simulationSpeed = graphic->handleEvents(simulationSpeed);
         }
     } else {
         throw runtime_error("Wrong mode");

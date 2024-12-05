@@ -12,9 +12,9 @@ class Grid{
     public:
         Grid();
         Grid(int w, int h, vector<vector<Cell>> cells);
-        vector<vector<Cell>> getCells();
-        int getWidth();
-        int getHeight();
+        vector<vector<Cell>> getCells() const;
+        int getWidth() const;
+        int getHeight() const;
         bool update();
         vector<Cell> getCellNeighbors(Cell cell);
 };

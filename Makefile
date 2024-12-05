@@ -1,6 +1,6 @@
 CXX = clang++
 CXXFLAGS = -std=c++17 -Wall
-LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-system -lGL
 
 SRCS = main.cpp src/file.cpp src/position.cpp src/game.cpp src/cell.cpp src/grid.cpp src/graphic.cpp
 OBJS = $(SRCS:.cpp=.o)

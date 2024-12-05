@@ -2,6 +2,7 @@
 #define GRAPHIC_H
 
 #include <SFML/Graphics.hpp>
+#include "grid.h"
 
 using namespace std;
 
@@ -11,9 +12,8 @@ class Graphic{
         float cellSize;
     public:
         Graphic();
-        Graphic(Grid grid, float cellSize);
         ~Graphic() = default;
-        void render(Grid grid);
+        void render(const Grid& grid);
         float handleEvents(float simulationSpeed);
         bool isOpen();
 };
