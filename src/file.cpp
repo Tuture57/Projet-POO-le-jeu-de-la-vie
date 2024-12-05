@@ -14,7 +14,7 @@ Grid File::loadGrid() {
     vector<Cell> line;
     string l1;
     char ch;
-    ifstream gridFile (argv[1]);
+    ifstream gridFile (filename);
     if (gridFile.is_open()) {
         getline(gridFile,l1);
         int pos = l1.find(' ');
@@ -25,7 +25,7 @@ Grid File::loadGrid() {
             for (int j = 0; j < width; j++) {
                 ch = l1[j];
                 if (ch !=' ' && ch !='\n') {
-                    line.push_back();
+                    line.push_back(Cell());
                 }
             }
             cells.push_back(line);
