@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Grid::Grid(int w, int h, vector<vector<Cell>> cells) : width(w), height(h), cell(cell) {};
+Grid::Grid(int w, int h, vector<vector<Cell>> cells) : width(w), height(h), cells(cells) {};
 
 int Grid::getHeight(){
     return height;
