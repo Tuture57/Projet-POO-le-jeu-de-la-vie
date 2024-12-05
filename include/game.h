@@ -7,6 +7,7 @@ using namespace std;
 #include "grid.h"
 #include "file.h"
 #include "graphic.h"
+#include <atomic>
 
 enum SimulationMode{
     CONSOLE,
@@ -20,7 +21,7 @@ class Game{
         File file;
         Graphic* graphic;
         int maxIteration;
-        float simulationSpeed;
+        atomic<float> simulationSpeed;
     public:
         Game();
         Game(string filename, SimulationMode mode, int iteration);

@@ -3,7 +3,6 @@
 #include <stdexcept>
 #include <chrono>
 #include <thread>
-#include <atomic>
 
 using namespace std;
 
@@ -26,14 +25,14 @@ void Game::startRenderThread() {
 }
 
 void Game::stopRenderThread() {
-    running = false;
+    running.store(false);
 }
 
 void Game::RenderGrid(){
     while(graphic->isOpen()){
         if (grid.update()){    
             graphic->render(grid);
-            std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(simulationSpeed * 1000)));
+            std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(simulationSpeed.load() * 1000)));
         }else{
             stopRenderThread();
         }
@@ -53,7 +52,8 @@ void Game::run(){
         startRenderThread();
         
         while(graphic->isOpen()){
-            simulationSpeed = graphic->handleEvents(simulationSpeed);
+            float newSpeed = graphic->handleEvents(simulationSpeed.load());
+            simulationSpeed.store(newSpeed);
         }
     } else {
         throw runtime_error("Wrong mode");

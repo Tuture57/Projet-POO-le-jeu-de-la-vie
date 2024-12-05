@@ -6,20 +6,11 @@ void Graphic::render(const Grid& grid) {
     vector<vector<Cell>> cells = grid.getCells();
     window.clear();
     sf::RectangleShape aliveCell(sf::Vector2f(cellSize - 1.0f, cellSize - 1.0f));
-    aliveCell.setFillColor(sf::Color::Black);
-    sf::RectangleShape deadCell(sf::Vector2f(cellSize - 1.0f, cellSize - 1.0f));
-    deadCell.setFillColor(sf::Color::Transparent);
-    deadCell.setOutlineColor(sf::Color::Black);
-    deadCell.setOutlineThickness(1.0f);
-
     for (int i = 0; i < grid.getHeight(); ++i) {
         for (int j = 0; j < grid.getWidth(); ++j) {
             if (cells[i][j].getAlive()) {
                 aliveCell.setPosition(j * cellSize, i * cellSize);
                 window.draw(aliveCell);
-            } else if (cells[i][j].getAlive() == false) {
-                deadCell.setPosition(j * cellSize, i * cellSize);
-                window.draw(deadCell);
             } else {
                 throw runtime_error("Cell is neither alive nor dead");
             }
