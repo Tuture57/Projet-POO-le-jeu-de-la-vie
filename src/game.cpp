@@ -11,11 +11,28 @@ Game::Game(string filename, SimulationMode mode, int iteration) : mode(mode), ma
 
 void Game::run(){
     if (mode == CONSOLE){
-        for (int i = 0; i < )
+        for (int i = 0; i < maxIteration; i++){
+            file.saveGrid(grid);
+        }
     }else if (mode == GRAPHIC){
-
+        render(grid);
+        if 
+        handleEvent();
     }else{
-        throw invalid_argument("Wrong mode");
+        throw runtime_error("Wrong mode");
     }
+};
+
+void Game::setSimulationSpeed(float speed){
+
+}
+
+
+int Game::getCurrentIteration(){
+
+}
+
+
+bool Game::isFinished(){
 
 }
