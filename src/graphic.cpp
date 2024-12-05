@@ -30,7 +30,7 @@ void Graphic::render(Grid grid) {
     window.display();
 }
 
-int Graphic::handleEvents(float simulationSpeed) {
+float Graphic::handleEvents(float simulationSpeed) {
     Event event;
     while (window.pollEvent(event)) {
         if (event.type == Event::Closed) {

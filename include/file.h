@@ -13,7 +13,7 @@ class File{
         File();
         File(string fname);
         Grid loadGrid();
-        void saveGrid(Grid grid);
+        void saveGrid(Grid grid, int iteration);
 };
 
 #endif
