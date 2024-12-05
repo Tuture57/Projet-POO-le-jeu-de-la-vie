@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Cell::Cell(int x, int y) : position(x, y) {};
+Cell::Cell(int x, int y, bool isAlive) : position(x, y), isAlive(isAlive) {};
 
 void Cell::updateState(bool state){
     if (state == 0){

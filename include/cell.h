@@ -10,7 +10,7 @@ class Cell {
         Position position;
     public:
         Cell();
-        Cell(int x, int y);
+        Cell(int x, int y, bool isAlive);
         int getCellX();
         int getCellY();
         void updateState(bool state);
