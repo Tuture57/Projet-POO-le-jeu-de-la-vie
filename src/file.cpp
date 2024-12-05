@@ -1,4 +1,5 @@
 #include "file.h"
+#include "grid.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -14,7 +15,7 @@ Grid File::loadGrid() {
     vector<Cell> line;
     string l1;
     char ch;
-    ifstream gridFile (argv[1]);
+    ifstream gridFile (filename);
     if (gridFile.is_open()) {
         getline(gridFile,l1);
         int pos = l1.find(' ');
@@ -25,7 +26,7 @@ Grid File::loadGrid() {
             for (int j = 0; j < width; j++) {
                 ch = l1[j];
                 if (ch !=' ' && ch !='\n') {
-                    line.push_back();
+                    line.push_back(Cell(width, height, ch));
                 }
             }
             cells.push_back(line);
@@ -33,8 +34,23 @@ Grid File::loadGrid() {
         }
         gridFile.close();
     }
+    return Grid(width, height, cells);
 }
 
 void File::saveGrid(Grid grid) {
-
+    ofstream gridFile (filename);
+    vector<vector<Cell>> cells = grid.cells();
+    if (gridFile.is_open()) {
+        gridFile << grid.getHeight() << " " << grid.getWidth() << endl;
+        for (int i = 0; i < grid.getHeight(); i++) {
+            for (int j = 0; j < grid.getWidth(); j++) {
+                gridFile << cells[i][j].isAlive();
+                if (j < grid.getWidth() - 1) {
+                    gridFile << " ";
+                }
+            }
+            gridFile << endl;
+        }
+        gridFile.close();
+    }
 }
