@@ -15,18 +15,24 @@ void Game::run(){
             file.saveGrid(grid);
         }
     }else if (mode == GRAPHIC){
-        render(grid);
-        if 
-        handleEvent();
+        while(graphic.isOpen())
+            render(grid);
+            simulationSpeed = graphic.handleEvents();
+
     }else{
         throw runtime_error("Wrong mode");
     }
 };
 
 void Game::setSimulationSpeed(float speed){
-
+    
 }
 
+void Game::RenderGrid(){
+    grid.update();
+    render(grid);
+
+}
 
 int Game::getCurrentIteration(){
 

@@ -6,6 +6,7 @@ using namespace std;
 #include <string>
 #include "grid.h"
 #include "file.h"
+#include "graphic.h"
 
 enum SimulationMode{
     CONSOLE,
