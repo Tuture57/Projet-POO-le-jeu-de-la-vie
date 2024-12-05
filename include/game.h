@@ -5,6 +5,7 @@ using namespace std;
 
 #include <string>
 #include "grid.h"
+#include "file.h"
 
 enum SimulationMode{
     CONSOLE,
@@ -17,6 +18,8 @@ class Game{
         SimulationMode mode;
         int maxIteration;
         float simulationSpeed;
+        File file;
+        Graphic graphic;
     public:
         Game();
         Game(string filename, SimulationMode mode, int iteration);
