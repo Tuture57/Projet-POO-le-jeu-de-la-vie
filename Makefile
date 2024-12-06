@@ -2,7 +2,7 @@ CXX = clang++
 CXXFLAGS = -std=c++17 -Wall
 LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system -g -Wmost -Werror -lGL
 
-SRCS = main.cpp src/file.cpp src/position.cpp src/game.cpp src/cell.cpp src/classic_grid.cpp src/graphic.cpp
+SRCS = main.cpp src/file.cpp src/position.cpp src/game.cpp src/cell.cpp src/classic_grid.cpp src/graphic_sfml.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 INCLUDES = -Iinclude

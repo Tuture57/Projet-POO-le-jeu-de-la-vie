@@ -1,21 +1,22 @@
-#include "graphic.h"
+#include "graphic_sfml.h"
+
 
 using namespace std;
 
-Graphic::Graphic(const ClassicGrid& grid, unsigned int height, unsigned int width) {
+GraphicSFML::GraphicSFML(const ClassicGrid& grid, unsigned int height, unsigned int width) {
     cellSize = min(width / grid.getWidth(), height / grid.getHeight());
     window.create(sf::VideoMode(cellSize * grid.getWidth(), cellSize * grid.getHeight()), "Game of Life");
     initializeShapes();
     window.setFramerateLimit(60);
 }
 
-void Graphic::initializeShapes() {
+void GraphicSFML::initializeShapes() {
     gridLine.setFillColor(sf::Color(200, 200, 200));
     aliveCell.setSize(sf::Vector2f(cellSize - 1.0f, cellSize - 1.0f));
     aliveCell.setFillColor(sf::Color::Black);
 }
 
-void Graphic::drawGrid(const ClassicGrid& grid) {
+void GraphicSFML::drawGrid(const ClassicGrid& grid) {
     for (int x = 0; x <= grid.getWidth(); x++) {
         gridLine.setSize(sf::Vector2f(1.0f, grid.getHeight() * cellSize));
         gridLine.setPosition(x * cellSize, 0);
@@ -29,7 +30,7 @@ void Graphic::drawGrid(const ClassicGrid& grid) {
     }
 }
 
-void Graphic::drawCells(const ClassicGrid& grid) {
+void GraphicSFML::drawCells(const ClassicGrid& grid) {
     vector<vector<Cell>> cells = grid.getCells();
     for (int y = 0; y < grid.getHeight(); y++) {
         for (int x = 0; x < grid.getWidth(); x++) {
@@ -41,14 +42,14 @@ void Graphic::drawCells(const ClassicGrid& grid) {
     }
 }
 
-void Graphic::render(const ClassicGrid& grid) {
+void GraphicSFML::render(const ClassicGrid& grid) {
     window.clear(sf::Color::White);
     drawGrid(grid);
     drawCells(grid);
     window.display();
 }
 
-float Graphic::handleEvents(float simulationSpeed) {
+float GraphicSFML::handleEvents(float simulationSpeed) {
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
@@ -67,6 +68,6 @@ float Graphic::handleEvents(float simulationSpeed) {
     return simulationSpeed;
 }
 
-bool Graphic::isOpen() {
+bool GraphicSFML::isOpen() {
     return window.isOpen();
 }

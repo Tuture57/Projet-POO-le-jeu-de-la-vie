@@ -1,4 +1,5 @@
 #include "game.h"
+#include "graphic_sfml.h"
 
 #include <stdexcept>
 #include <chrono>
@@ -36,7 +37,7 @@ void Game::run(){
             }
         }
     } else if (mode == GRAPHIC) {
-        graphic = new Graphic(grid, 800, 800);
+        graphic = new GraphicSFML(grid, 800, 800);
         simulationSpeed = 1.0f;
 
         startLogicThread();
