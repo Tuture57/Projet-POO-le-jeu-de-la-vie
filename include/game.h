@@ -27,7 +27,7 @@ class Game{
         void run();
         void startLogicThread();
         void stopLogicThread();
-        void CalculLogique();
+        void CalculLogique(); 
 };
 
 #endif

@@ -19,5 +19,6 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
+	rm -rf *_out/
 
 .PHONY: all clean

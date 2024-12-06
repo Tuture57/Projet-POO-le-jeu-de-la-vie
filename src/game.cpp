@@ -22,8 +22,11 @@ Game::~Game(){
 void Game::run(){
     if (mode == CONSOLE) {
         for (int i = 0; i < maxIteration; i++){
-            grid.update();
-            file.saveGrid(grid, i);
+            if (grid.update()) {
+                file.saveGrid(grid, i);
+            } else {
+                break;
+            }
         }
     } else if (mode == GRAPHIC) {
         graphic = new Graphic(grid, 800, 800);
