@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Graphic::Graphic(const Grid& grid, unsigned int height, unsigned int width) {
+Graphic::Graphic(const ClassicGrid& grid, unsigned int height, unsigned int width) {
     cellSize = min(width / grid.getWidth(), height / grid.getHeight());
     window.create(sf::VideoMode(cellSize * grid.getWidth(), cellSize * grid.getHeight()), "Game of Life");
     initializeShapes();
@@ -15,7 +15,7 @@ void Graphic::initializeShapes() {
     aliveCell.setFillColor(sf::Color::Black);
 }
 
-void Graphic::drawGrid(const Grid& grid) {
+void Graphic::drawGrid(const ClassicGrid& grid) {
     for (int x = 0; x <= grid.getWidth(); x++) {
         gridLine.setSize(sf::Vector2f(1.0f, grid.getHeight() * cellSize));
         gridLine.setPosition(x * cellSize, 0);
@@ -29,7 +29,7 @@ void Graphic::drawGrid(const Grid& grid) {
     }
 }
 
-void Graphic::drawCells(const Grid& grid) {
+void Graphic::drawCells(const ClassicGrid& grid) {
     vector<vector<Cell>> cells = grid.getCells();
     for (int y = 0; y < grid.getHeight(); y++) {
         for (int x = 0; x < grid.getWidth(); x++) {
@@ -41,7 +41,7 @@ void Graphic::drawCells(const Grid& grid) {
     }
 }
 
-void Graphic::render(const Grid& grid) {
+void Graphic::render(const ClassicGrid& grid) {
     window.clear(sf::Color::White);
     drawGrid(grid);
     drawCells(grid);
@@ -57,11 +57,9 @@ float Graphic::handleEvents(float simulationSpeed) {
         if (event.type == sf::Event::KeyPressed) {
             if (event.key.code == sf::Keyboard::Escape) {
                 window.close();
-            }
-            if (event.key.code == sf::Keyboard::Up) {
+            } if (event.key.code == sf::Keyboard::Up) {
                 simulationSpeed -= 0.1f;
-            }
-            if (event.key.code == sf::Keyboard::Down) {
+            } if (event.key.code == sf::Keyboard::Down) {
                 simulationSpeed += 0.1f;
             }
         }

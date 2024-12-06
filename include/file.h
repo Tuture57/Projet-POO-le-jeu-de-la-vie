@@ -1,7 +1,7 @@
 #ifndef FILE_H
 #define FILE_H
 
-#include "grid.h"
+#include "classic_grid.h"
 #include "file_loader.h"
 #include "file_saver.h"
 #include <string>
@@ -13,8 +13,8 @@ class File : public FileLoader, public FileSaver {
         File();
         File(std::string fname);
         ~File() = default;
-        Grid loadGrid() override;
-        void saveGrid(const Grid& grid, int iteration) override;
+        ClassicGrid loadGrid() override;
+        void saveGrid(const ClassicGrid& grid, int iteration) override;
 };
 
 #endif

@@ -1,24 +1,24 @@
-#include "grid.h"
+#include "classic_grid.h"
 
 using namespace std;
 
-Grid::Grid() : width(0), height(0) {};
+ClassicGrid::ClassicGrid() : width(0), height(0) {};
 
-Grid::Grid(int w, int h, vector<vector<Cell>> cells) : cells(cells), width(w), height(h) {};
+ClassicGrid::ClassicGrid(int w, int h, vector<vector<Cell>> cells) : cells(cells), width(w), height(h) {};
 
-int Grid::getHeight() const{
+int ClassicGrid::getHeight() const{
     return height;
 }
 
-int Grid::getWidth() const{
+int ClassicGrid::getWidth() const{
     return width;
 }
 
-vector<vector<Cell>> Grid::getCells() const{
+vector<vector<Cell>> ClassicGrid::getCells() const{
     return cells;
 }
 
-bool Grid::update(){
+bool ClassicGrid::update(){
     vector<vector<Cell>> newCells;
     vector<Cell> line;
     vector<Cell> cellNeighbors;
@@ -42,7 +42,7 @@ bool Grid::update(){
     }
 }
 
-vector<Cell> Grid::getCellNeighbors(Cell cell){
+vector<Cell> ClassicGrid::getCellNeighbors(Cell cell){
     int x = cell.getCellX();
     int y = cell.getCellY();
     vector<Cell> stock;

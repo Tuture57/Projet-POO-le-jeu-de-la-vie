@@ -1,12 +1,12 @@
 #ifndef FILE_LOADER_H
 #define FILE_LOADER_H
 
-#include "grid.h"
+#include "classic_grid.h"
 
 class FileLoader {
     public:
         virtual ~FileLoader() = default;
-        virtual Grid loadGrid() = 0;
+        virtual ClassicGrid loadGrid() = 0;
 };
 
 #endif

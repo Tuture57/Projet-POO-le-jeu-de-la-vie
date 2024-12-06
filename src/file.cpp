@@ -1,5 +1,5 @@
 #include "file.h"
-#include "grid.h"
+#include "classic_grid.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,7 +13,7 @@ File::File() : filename("") {}
 
 File::File(string fname) : filename(fname) {}
 
-Grid File::loadGrid() {
+ClassicGrid File::loadGrid() {
     vector<vector<Cell>> cells;
     vector<Cell> line;
     string l;
@@ -42,10 +42,10 @@ Grid File::loadGrid() {
         }
         gridFile.close();
     }
-    return Grid(width, height, cells);
+    return ClassicGrid(width, height, cells);
 }
 
-void File::saveGrid(const Grid& grid, int iteration) {
+void File::saveGrid(const ClassicGrid& grid, int iteration) {
     string baseFileName = filename.substr(0, filename.find_last_of("."));
     string extension = filename.substr(filename.find_last_of("."));
 

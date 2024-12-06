@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "grid.h"
+#include "classic_grid.h"
 #include "file.h"
 #include "graphic.h"
 #include <string>
@@ -14,7 +14,7 @@ enum SimulationMode{
 
 class Game{
     private:
-        Grid grid;
+        ClassicGrid grid;
         SimulationMode mode;
         File file;
         Graphic* graphic;
@@ -22,6 +22,7 @@ class Game{
         std::atomic<float> simulationSpeed;
     public:
         Game();
+        Game(std::string filename, SimulationMode mode);
         Game(std::string filename, SimulationMode mode, int iteration);
         ~Game();
         void run();

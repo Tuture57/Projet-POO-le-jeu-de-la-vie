@@ -1,7 +1,7 @@
 #ifndef GRAPHIC_H
 #define GRAPHIC_H
 
-#include "grid.h"
+#include "classic_grid.h"
 #include <SFML/Graphics.hpp>
 
 class Graphic{
@@ -11,12 +11,12 @@ class Graphic{
         void initializeShapes();
         sf::RectangleShape gridLine;
         sf::RectangleShape aliveCell;
-        void drawGrid(const Grid& grid);
-        void drawCells(const Grid& grid);
+        void drawGrid(const ClassicGrid& grid);
+        void drawCells(const ClassicGrid& grid);
     public:
-        Graphic(const Grid& grid, unsigned int height, unsigned int width);
+        Graphic(const ClassicGrid& grid, unsigned int height, unsigned int width);
         ~Graphic() = default;
-        void render(const Grid& grid);
+        void render(const ClassicGrid& grid);
         float handleEvents(float simulationSpeed);
         bool isOpen();
 };

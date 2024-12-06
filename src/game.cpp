@@ -8,6 +8,13 @@ using namespace std;
 
 atomic<bool> running(true);
 
+Game::Game() : mode(CONSOLE), graphic(nullptr), maxIteration(0){};
+
+Game::Game(string filename, SimulationMode mode) : mode(mode), graphic(nullptr), maxIteration(-1){
+    file = File(filename);
+    grid = file.loadGrid();
+};
+
 Game::Game(string filename, SimulationMode mode, int iteration) : mode(mode), graphic(nullptr),  maxIteration(iteration){
     file = File(filename);
     grid = file.loadGrid();

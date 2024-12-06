@@ -5,18 +5,13 @@
 #include <vector>
 
 class Grid{
-    private:
-        std::vector<std::vector<Cell>> cells;
-        int width;
-        int height;
     public:
-        Grid();
-        Grid(int w, int h, std::vector<std::vector<Cell>> cells);
-        std::vector<std::vector<Cell>> getCells() const;
-        int getWidth() const;
-        int getHeight() const;
-        bool update();
-        std::vector<Cell> getCellNeighbors(Cell cell);
+        virtual ~Grid() = default;
+        virtual std::vector<std::vector<Cell>> getCells() const = 0;
+        virtual int getWidth() const = 0;
+        virtual int getHeight() const = 0;
+        virtual bool update() = 0;
+        virtual std::vector<Cell> getCellNeighbors(Cell cell) = 0;
 };
 
 #endif
