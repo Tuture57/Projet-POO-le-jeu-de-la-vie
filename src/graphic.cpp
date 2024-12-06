@@ -6,7 +6,7 @@ Graphic::Graphic(const Grid& grid, unsigned int height, unsigned int width) {
     cellSize = min(width / grid.getWidth(), height / grid.getHeight());
     window.create(sf::VideoMode(cellSize * grid.getWidth(), cellSize * grid.getHeight()), "Game of Life");
     initializeShapes();
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(60);
 }
 
 void Graphic::initializeShapes() {
