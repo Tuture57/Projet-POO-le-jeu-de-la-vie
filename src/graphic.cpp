@@ -1,34 +1,35 @@
 #include "graphic.h"
 
-Graphic::Graphic(const Grid& grid) : window(sf::VideoMode(800,800), "Game of Life") {
-    float cellSizeX = 800.0f / grid.getWidth();
-    float cellSizeY = 800.0f / grid.getHeight();
-    cellSize = min(cellSizeX, cellSizeY);
+using namespace std;
 
-    window.setFramerateLimit(60);
+Graphic::Graphic(const Grid& grid, unsigned int height, unsigned int width) {
+    cellSize = min(width / grid.getWidth(), height / grid.getHeight());
+    window.create(sf::VideoMode(cellSize * grid.getWidth(), cellSize * grid.getHeight()), "Game of Life");
+    initializeShapes();
+    window.setFramerateLimit(30);
 }
 
-void Graphic::render(const Grid& grid) {
-    window.clear(sf::Color::White);
+void Graphic::initializeShapes() {
+    gridLine.setFillColor(sf::Color(200, 200, 200));
+    aliveCell.setSize(sf::Vector2f(cellSize - 1.0f, cellSize - 1.0f));
+    aliveCell.setFillColor(sf::Color::Black);
+}
 
-    sf::RectangleShape line;
-    line.setFillColor(sf::Color(200, 200, 200));  // Gris clair
-
+void Graphic::drawGrid(const Grid& grid) {
     for (int x = 0; x <= grid.getWidth(); x++) {
-        line.setSize(sf::Vector2f(1.0f, grid.getHeight() * cellSize));
-        line.setPosition(x * cellSize, 0);
-        window.draw(line);
+        gridLine.setSize(sf::Vector2f(1.0f, grid.getHeight() * cellSize));
+        gridLine.setPosition(x * cellSize, 0);
+        window.draw(gridLine);
     }
 
     for (int y = 0; y <= grid.getHeight(); y++) {
-        line.setSize(sf::Vector2f(grid.getWidth() * cellSize, 1.0f));
-        line.setPosition(0, y * cellSize);
-        window.draw(line);
+        gridLine.setSize(sf::Vector2f(grid.getWidth() * cellSize, 1.0f));
+        gridLine.setPosition(0, y * cellSize);
+        window.draw(gridLine);
     }
+}
 
-    sf::RectangleShape aliveCell(sf::Vector2f(cellSize - 1.0f, cellSize - 1.0f));
-    aliveCell.setFillColor(sf::Color::Black);
-
+void Graphic::drawCells(const Grid& grid) {
     vector<vector<Cell>> cells = grid.getCells();
     for (int y = 0; y < grid.getHeight(); y++) {
         for (int x = 0; x < grid.getWidth(); x++) {
@@ -38,6 +39,12 @@ void Graphic::render(const Grid& grid) {
             }
         }
     }
+}
+
+void Graphic::render(const Grid& grid) {
+    window.clear(sf::Color::White);
+    drawGrid(grid);
+    drawCells(grid);
     window.display();
 }
 
@@ -48,16 +55,19 @@ float Graphic::handleEvents(float simulationSpeed) {
             window.close();
         }
         if (event.type == sf::Event::KeyPressed) {
+            if (event.key.code == sf::Keyboard::Escape) {
+                window.close();
+            }
             if (event.key.code == sf::Keyboard::Up) {
-                simulationSpeed += 0.1f;
+                simulationSpeed -= 0.1f;
             }
             if (event.key.code == sf::Keyboard::Down) {
-                simulationSpeed -= 0.1f;
+                simulationSpeed += 0.1f;
             }
         }
     }
     return simulationSpeed;
- }
+}
 
 bool Graphic::isOpen() {
     return window.isOpen();

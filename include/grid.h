@@ -1,22 +1,22 @@
 #ifndef GRID_H
 #define GRID_H
 
-#include <vector>
 #include "cell.h"
+#include <vector>
 
 class Grid{
     private:
-        vector<vector<Cell>> cells;
+        std::vector<std::vector<Cell>> cells;
         int width;
         int height;
     public:
         Grid();
-        Grid(int w, int h, vector<vector<Cell>> cells);
-        vector<vector<Cell>> getCells() const;
+        Grid(int w, int h, std::vector<std::vector<Cell>> cells);
+        std::vector<std::vector<Cell>> getCells() const;
         int getWidth() const;
         int getHeight() const;
         bool update();
-        vector<Cell> getCellNeighbors(Cell cell);
+        std::vector<Cell> getCellNeighbors(Cell cell);
 };
 
 #endif

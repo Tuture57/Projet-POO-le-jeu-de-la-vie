@@ -1,20 +1,20 @@
 #ifndef FILE_H
 #define FILE_H
 
-using namespace std;
-
-#include <string>
 #include "grid.h"
+#include "file_loader.h"
+#include "file_saver.h"
+#include <string>
 
-class File{
+class File : public FileLoader, public FileSaver {
     private:
-        string filename;
+        std::string filename;
     public:
         File();
-        File(string fname);
+        File(std::string fname);
         ~File() = default;
-        Grid loadGrid();
-        void saveGrid(Grid grid, int iteration);
+        Grid loadGrid() override;
+        void saveGrid(const Grid& grid, int iteration) override;
 };
 
 #endif

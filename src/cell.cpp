@@ -3,9 +3,9 @@
 
 using namespace std;
 
-Cell::Cell() : position(0, 0), isAlive(false) {};
+Cell::Cell() : isAlive(false), position(0, 0) {};
 
-Cell::Cell(int x, int y, bool isAlive) : position(x, y), isAlive(isAlive) {};
+Cell::Cell(int x, int y, bool isAlive) : isAlive(isAlive), position(x, y) {};
 
 void Cell::updateState(bool state){
     if (state == 0){
@@ -26,8 +26,6 @@ int Cell::getCellY() const{
 }
 
 bool Cell::getNextState(vector<Cell> neighbors){
-    int x = position.getX();
-    int y = position.getY();
     int cpt = 0;
     for (int i = 0; i < neighbors.size(); i++){
         if (neighbors[i].getAlive()){

@@ -1,10 +1,8 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include <vector>
 #include "position.h"
-
-using namespace std;
+#include <vector>
 
 class Cell {
     private:
@@ -17,7 +15,7 @@ class Cell {
         int getCellX() const;
         int getCellY() const;
         void updateState(bool state);
-        bool getNextState(vector<Cell> neighbors);
+        bool getNextState(std::vector<Cell> neighbors);
         bool getAlive() const;
         bool operator==(const Cell& c2) const;
 };

@@ -4,7 +4,7 @@ using namespace std;
 
 Grid::Grid() : width(0), height(0) {};
 
-Grid::Grid(int w, int h, vector<vector<Cell>> cells) : width(w), height(h), cells(cells) {};
+Grid::Grid(int w, int h, vector<vector<Cell>> cells) : cells(cells), width(w), height(h) {};
 
 int Grid::getHeight() const{
     return height;

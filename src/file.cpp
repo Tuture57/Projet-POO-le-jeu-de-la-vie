@@ -18,7 +18,7 @@ Grid File::loadGrid() {
     vector<Cell> line;
     string l;
     char ch;
-    int width, height;
+    int width = 0, height = 0;
     ifstream gridFile (filename);
     if (gridFile.is_open()) {
         getline(gridFile,l);
@@ -45,7 +45,7 @@ Grid File::loadGrid() {
     return Grid(width, height, cells);
 }
 
-void File::saveGrid(Grid grid, int iteration) {
+void File::saveGrid(const Grid& grid, int iteration) {
     string baseFileName = filename.substr(0, filename.find_last_of("."));
     string extension = filename.substr(filename.find_last_of("."));
 
