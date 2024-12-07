@@ -1,6 +1,6 @@
 #include "file.h"
 #include "classic_grid.h"
-#include "classic_cell.h" // Add this line
+#include "classic_cell.h"
 #include <iostream>
 #include <fstream>
 #include <string>

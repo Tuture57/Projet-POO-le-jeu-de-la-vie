@@ -8,7 +8,7 @@ class ClassicCell : public Cell {
         bool isAlive;
     public:
         ClassicCell();
-        ClassicCell(int x, int y, bool alive); // Ensure this declaration is correct
+        ClassicCell(int x, int y, bool alive);
 
         void updateState(bool state) override;
         bool getNextState(std::vector<Cell*> neighbors) override;

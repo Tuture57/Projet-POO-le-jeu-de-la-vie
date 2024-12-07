@@ -13,12 +13,12 @@ Game::Game() : mode(CONSOLE), maxIteration(0) {}
 
 Game::Game(string filename, SimulationMode mode) : mode(mode), maxIteration(-1) {
     file = std::make_unique<File>(filename);
-    grid = file->loadGrid(); // Use the unique pointer directly
+    grid = file->loadGrid();
 }
 
 Game::Game(string filename, SimulationMode mode, int iteration) : mode(mode), maxIteration(iteration) {
     file = std::make_unique<File>(filename);
-    grid = file->loadGrid(); // Use the unique pointer directly
+    grid = file->loadGrid();
 }
 
 Game::~Game() = default;
