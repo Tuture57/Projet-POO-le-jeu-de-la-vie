@@ -5,6 +5,7 @@
 #include "file_loader.h"
 #include "file_saver.h"
 #include <string>
+#include <memory>
 
 class File : public FileLoader, public FileSaver {
     private:
@@ -13,7 +14,7 @@ class File : public FileLoader, public FileSaver {
         File();
         File(std::string fname);
         ~File() = default;
-        ClassicGrid loadGrid() override;
+        std::unique_ptr<ClassicGrid> loadGrid() override;
         void saveGrid(const ClassicGrid& grid, int iteration) override;
 };
 

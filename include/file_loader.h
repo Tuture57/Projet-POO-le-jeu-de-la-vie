@@ -2,11 +2,12 @@
 #define FILE_LOADER_H
 
 #include "classic_grid.h"
+#include <memory>
 
 class FileLoader {
     public:
         virtual ~FileLoader() = default;
-        virtual ClassicGrid loadGrid() = 0;
+        virtual std::unique_ptr<ClassicGrid> loadGrid() = 0;
 };
 
 #endif

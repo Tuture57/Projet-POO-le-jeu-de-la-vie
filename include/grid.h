@@ -3,15 +3,16 @@
 
 #include "cell.h"
 #include <vector>
+#include <memory>
 
-class Grid{
+class Grid {
     public:
         virtual ~Grid() = default;
-        virtual std::vector<std::vector<Cell>> getCells() const = 0;
+        virtual const std::vector<std::vector<std::unique_ptr<Cell>>>& getCells() const = 0;
         virtual int getWidth() const = 0;
         virtual int getHeight() const = 0;
         virtual bool update() = 0;
-        virtual std::vector<Cell> getCellNeighbors(Cell cell) = 0;
+        virtual std::vector<Cell*> getCellNeighbors(Cell& cell) = 0;
 };
 
 #endif

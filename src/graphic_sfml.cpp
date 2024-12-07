@@ -31,10 +31,10 @@ void GraphicSFML::drawGrid(const ClassicGrid& grid) {
 }
 
 void GraphicSFML::drawCells(const ClassicGrid& grid) {
-    vector<vector<Cell>> cells = grid.getCells();
+    const auto& cells = grid.getCells();
     for (int y = 0; y < grid.getHeight(); y++) {
         for (int x = 0; x < grid.getWidth(); x++) {
-            if (cells[y][x].getAlive()) {
+            if (cells[y][x]->getAlive()) {
                 aliveCell.setPosition(x * cellSize, y * cellSize);
                 window.draw(aliveCell);
             }

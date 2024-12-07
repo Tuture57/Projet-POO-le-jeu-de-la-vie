@@ -6,6 +6,7 @@
 #include "graphic.h"
 #include <string>
 #include <atomic>
+#include <memory>
 
 enum SimulationMode{
     CONSOLE,
@@ -14,10 +15,10 @@ enum SimulationMode{
 
 class Game{
     private:
-        ClassicGrid grid;
+        std::unique_ptr<ClassicGrid> grid;
         SimulationMode mode;
-        File file;
-        Graphic* graphic;
+        std::unique_ptr<File> file;
+        std::unique_ptr<Graphic> graphic;
         int maxIteration;
         std::atomic<float> simulationSpeed;
     public:
