@@ -3,6 +3,7 @@
 
 #include "position.h"
 #include <vector>
+#include <memory>
 
 class Cell {
     protected:
@@ -15,6 +16,7 @@ class Cell {
         int getCellX() const;
         int getCellY() const;
 
+        virtual std::unique_ptr<Cell> clone(bool state) const = 0;
         virtual void updateState(bool state) = 0; 
         virtual bool getNextState(std::vector<Cell*> neighbors) = 0;
         virtual bool getAlive() const = 0;

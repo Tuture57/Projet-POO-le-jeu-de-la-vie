@@ -1,6 +1,7 @@
 #include "classic_grid.h"
 #include "classic_cell.h"
 
+
 using namespace std;
 
 ClassicGrid::ClassicGrid() : width(0), height(0) {}
@@ -30,7 +31,7 @@ bool ClassicGrid::update() {
         for (int j = 0; j < width; j++) {
             auto cellNeighbors = getCellNeighbors(*cells[i][j]);
             bool nextstate = cells[i][j]->getNextState(cellNeighbors);
-            newRow.push_back(std::make_unique<ClassicCell>(cells[i][j]->getCellX(), cells[i][j]->getCellY(), nextstate));
+            newRow.push_back(cells[i][j]->clone(nextstate));
         }
         newCells.push_back(std::move(newRow));
     }

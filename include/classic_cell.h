@@ -10,6 +10,7 @@ class ClassicCell : public Cell {
         ClassicCell();
         ClassicCell(int x, int y, bool alive);
 
+        std::unique_ptr<Cell> clone(bool state) const override;
         void updateState(bool state) override;
         bool getNextState(std::vector<Cell*> neighbors) override;
         bool getAlive() const override;

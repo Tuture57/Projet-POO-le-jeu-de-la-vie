@@ -7,6 +7,10 @@ ClassicCell::ClassicCell() : Cell(0, 0), isAlive(false) {}
 
 ClassicCell::ClassicCell(int x, int y, bool isAlive) : Cell(x, y), isAlive(isAlive) {} // Ensure this definition is correct
 
+std::unique_ptr<Cell> ClassicCell::clone(bool state) const{
+    return std::make_unique<ClassicCell>(getCellX(), getCellY(), state);
+}
+
 void ClassicCell::updateState(bool state){
     if (state == 0){
         isAlive = false;

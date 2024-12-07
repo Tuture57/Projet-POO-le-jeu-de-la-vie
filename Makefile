@@ -4,7 +4,7 @@ LDFLAGS = -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-syste
 
 # Makefile
 # Makefile
-SRCS = main.cpp src/file.cpp src/position.cpp src/game.cpp src/cell.cpp src/classic_cell.cpp src/classic_grid.cpp src/graphic_sfml.cpp
+SRCS = main.cpp src/file.cpp src/position.cpp src/game.cpp src/cell.cpp src/classic_cell.cpp src/classic_grid.cpp src/graphic_sfml.cpp src/obstacle_cell.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 INCLUDES = -Iinclude

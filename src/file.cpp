@@ -1,6 +1,7 @@
 #include "file.h"
 #include "classic_grid.h"
 #include "classic_cell.h"
+#include "obstacle_cell.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -35,7 +36,12 @@ std::unique_ptr<Grid> File::loadGrid() {
             for (int j = 0; j < l.length() && cellCol < width; j++) {
                 ch = l[j];
                 if (ch !=' ' && ch !='\n') {
-                    line.push_back(std::make_unique<ClassicCell>(cellCol, i, ch - '0'));
+                    if (ch == '0' || ch == '1') {
+                        line.push_back(std::make_unique<ClassicCell>(cellCol, i, ch - '0'));
+                    } else if (ch == '2' || ch == '3') {
+                        bool alive = (ch == '2');
+                        line.push_back(std::make_unique<ObstacleCell>(cellCol, i, alive));
+                    }
                     cellCol++;
                 }
             }
@@ -67,7 +73,11 @@ void File::saveGrid(const Grid& grid, int iteration) {
         gridFile << grid.getHeight() << " " << grid.getWidth() << endl;
         for (int i = 0; i < grid.getHeight(); i++) {
             for (int j = 0; j < grid.getWidth(); j++) {
-                gridFile << cells[i][j]->getAlive();
+                if (auto* obstacle = dynamic_cast<ObstacleCell*>(cells[i][j])) {
+                    gridFile << (obstacle->getAlive() ? "2" : "3");
+                } else {
+                    gridFile << (cells[i][j]->getAlive() ? "1" : "0");
+                }
                 if (j < grid.getWidth() - 1) {
                     gridFile << " ";
                 }
