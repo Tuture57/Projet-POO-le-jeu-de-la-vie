@@ -18,6 +18,7 @@ class ClassicGrid : public Grid {
         int getWidth() const override;
         int getHeight() const override;
         bool update() override;
+        bool areEquals(const std::vector<std::vector<std::unique_ptr<Cell>>>& grid1, const std::vector<std::vector<std::unique_ptr<Cell>>>& grid2) const override;
         std::vector<Cell*> getCellNeighbors(Cell& cell) override;
 };
 

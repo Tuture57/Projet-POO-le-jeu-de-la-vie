@@ -12,6 +12,7 @@ class Grid {
         virtual int getWidth() const = 0;
         virtual int getHeight() const = 0;
         virtual bool update() = 0;
+        virtual bool areEquals(const std::vector<std::vector<std::unique_ptr<Cell>>>& grid1, const std::vector<std::vector<std::unique_ptr<Cell>>>& grid2) const = 0;
         virtual std::vector<Cell*> getCellNeighbors(Cell& cell) = 0;
 };
 

@@ -21,6 +21,18 @@ const vector<vector<std::unique_ptr<Cell>>>& ClassicGrid::getCells() const {
     return cells;
 }
 
+bool ClassicGrid::areEquals(const std::vector<std::vector<std::unique_ptr<Cell>>>& grid1, const std::vector<std::vector<std::unique_ptr<Cell>>>& grid2) const {
+    for (int i = 0; i < grid1.size(); i++) {
+        for (int j = 0; j < grid1[i].size(); j++) {
+            if (!(*grid1[i][j] == *grid2[i][j])) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+    
+
 bool ClassicGrid::update() {
     std::vector<std::vector<std::unique_ptr<Cell>>> newCells;
     newCells.reserve(height);
@@ -35,7 +47,7 @@ bool ClassicGrid::update() {
         }
         newCells.push_back(std::move(newRow));
     }
-    if (cells == newCells){
+    if (areEquals(cells, newCells)){
         return 0;
     }else{
         cells = std::move(newCells);
