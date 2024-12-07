@@ -7,7 +7,7 @@
 class FileLoader {
     public:
         virtual ~FileLoader() = default;
-        virtual std::unique_ptr<ClassicGrid> loadGrid() = 0;
+        virtual std::unique_ptr<Grid> loadGrid() = 0;
 };
 
 #endif

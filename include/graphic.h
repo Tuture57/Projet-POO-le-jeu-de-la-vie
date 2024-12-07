@@ -6,7 +6,7 @@
 class Graphic{
     public:
         virtual ~Graphic() = default;
-        virtual void render(const ClassicGrid& grid) = 0;
+        virtual void render(const Grid& grid) = 0;
         virtual float handleEvents(float simulationSpeed) = 0;
         virtual bool isOpen() = 0;
 };

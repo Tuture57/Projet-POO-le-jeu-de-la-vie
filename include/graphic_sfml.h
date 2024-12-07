@@ -12,12 +12,12 @@ class GraphicSFML : public Graphic {
         void initializeShapes();
         sf::RectangleShape gridLine;
         sf::RectangleShape aliveCell;
-        void drawGrid(const ClassicGrid& grid);
-        void drawCells(const ClassicGrid& grid);
+        void drawGrid(const Grid& grid);
+        void drawCells(const Grid& grid);
     public:
-        GraphicSFML(const ClassicGrid& grid, unsigned int height, unsigned int width);
+        GraphicSFML(const Grid& grid, unsigned int height, unsigned int width);
         ~GraphicSFML() = default;
-        void render(const ClassicGrid& grid) override;
+        void render(const Grid& grid) override;
         float handleEvents(float simulationSpeed) override;
         bool isOpen() override;
 };

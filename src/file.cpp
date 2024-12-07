@@ -15,7 +15,7 @@ File::File() : filename("") {}
 
 File::File(string fname) : filename(fname) {}
 
-std::unique_ptr<ClassicGrid> File::loadGrid() {
+std::unique_ptr<Grid> File::loadGrid() {
     vector<vector<std::unique_ptr<Cell>>> cells;
     vector<std::unique_ptr<Cell>> line;
     string l;
@@ -47,7 +47,7 @@ std::unique_ptr<ClassicGrid> File::loadGrid() {
     return std::make_unique<ClassicGrid>(width, height, std::move(cells));
 }
 
-void File::saveGrid(const ClassicGrid& grid, int iteration) {
+void File::saveGrid(const Grid& grid, int iteration) {
     string baseFileName = filename.substr(0, filename.find_last_of("."));
     string extension = filename.substr(filename.find_last_of("."));
 

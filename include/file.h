@@ -14,8 +14,8 @@ class File : public FileLoader, public FileSaver {
         File();
         File(std::string fname);
         ~File() = default;
-        std::unique_ptr<ClassicGrid> loadGrid() override;
-        void saveGrid(const ClassicGrid& grid, int iteration) override;
+        std::unique_ptr<Grid> loadGrid() override;
+        void saveGrid(const Grid& grid, int iteration) override;
 };
 
 #endif

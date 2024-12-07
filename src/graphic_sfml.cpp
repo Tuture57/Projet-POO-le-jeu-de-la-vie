@@ -3,7 +3,7 @@
 
 using namespace std;
 
-GraphicSFML::GraphicSFML(const ClassicGrid& grid, unsigned int height, unsigned int width) {
+GraphicSFML::GraphicSFML(const Grid& grid, unsigned int height, unsigned int width) {
     cellSize = min(width / grid.getWidth(), height / grid.getHeight());
     window.create(sf::VideoMode(cellSize * grid.getWidth(), cellSize * grid.getHeight()), "Game of Life");
     initializeShapes();
@@ -16,7 +16,7 @@ void GraphicSFML::initializeShapes() {
     aliveCell.setFillColor(sf::Color::Black);
 }
 
-void GraphicSFML::drawGrid(const ClassicGrid& grid) {
+void GraphicSFML::drawGrid(const Grid& grid) {
     for (int x = 0; x <= grid.getWidth(); x++) {
         gridLine.setSize(sf::Vector2f(1.0f, grid.getHeight() * cellSize));
         gridLine.setPosition(x * cellSize, 0);
@@ -30,7 +30,7 @@ void GraphicSFML::drawGrid(const ClassicGrid& grid) {
     }
 }
 
-void GraphicSFML::drawCells(const ClassicGrid& grid) {
+void GraphicSFML::drawCells(const Grid& grid) {
     const auto& cells = grid.getCells();
     for (int y = 0; y < grid.getHeight(); y++) {
         for (int x = 0; x < grid.getWidth(); x++) {
@@ -42,7 +42,7 @@ void GraphicSFML::drawCells(const ClassicGrid& grid) {
     }
 }
 
-void GraphicSFML::render(const ClassicGrid& grid) {
+void GraphicSFML::render(const Grid& grid) {
     window.clear(sf::Color::White);
     drawGrid(grid);
     drawCells(grid);

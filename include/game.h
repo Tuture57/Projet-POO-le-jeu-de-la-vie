@@ -15,7 +15,7 @@ enum SimulationMode{
 
 class Game{
     private:
-        std::unique_ptr<ClassicGrid> grid;
+        std::unique_ptr<Grid> grid;
         SimulationMode mode;
         std::unique_ptr<File> file;
         std::unique_ptr<Graphic> graphic;

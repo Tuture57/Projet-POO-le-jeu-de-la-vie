@@ -6,7 +6,7 @@
 class FileSaver {
     public:
         virtual ~FileSaver() = default;
-        virtual void saveGrid(const ClassicGrid& grid, int iteration) = 0;
+        virtual void saveGrid(const Grid& grid, int iteration) = 0;
 };
 
 #endif
