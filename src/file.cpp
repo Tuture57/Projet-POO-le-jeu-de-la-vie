@@ -61,19 +61,13 @@ void File::saveGrid(const Grid& grid, int iteration) {
     string filename = baseFileName+"_out/"+baseFileName+"_out_"+to_string(iteration)+extension;
 
     ofstream gridFile(filename);
-    vector<vector<Cell*>> cells;
-    for (const auto& row : grid.getCells()) {
-        vector<Cell*> cellRow;
-        for (const auto& cell : row) {
-            cellRow.push_back(cell.get());
-        }
-        cells.push_back(std::move(cellRow));
-    }
+    const auto& cells = grid.getCells();
+
     if (gridFile.is_open()) {
         gridFile << grid.getHeight() << " " << grid.getWidth() << endl;
         for (int i = 0; i < grid.getHeight(); i++) {
             for (int j = 0; j < grid.getWidth(); j++) {
-                if (auto* obstacle = dynamic_cast<ObstacleCell*>(cells[i][j])) {
+                if (auto* obstacle = dynamic_cast<ObstacleCell*>(cells[i][j].get())) {
                     gridFile << (obstacle->getAlive() ? "2" : "3");
                 } else {
                     gridFile << (cells[i][j]->getAlive() ? "1" : "0");
