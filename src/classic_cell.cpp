@@ -5,7 +5,7 @@ using namespace std;
 
 ClassicCell::ClassicCell() : Cell(0, 0), isAlive(false) {}
 
-ClassicCell::ClassicCell(int x, int y, bool isAlive) : Cell(x, y), isAlive(isAlive) {} // Ensure this definition is correct
+ClassicCell::ClassicCell(int x, int y, bool isAlive) : Cell(x, y), isAlive(isAlive) {}
 
 std::unique_ptr<Cell> ClassicCell::clone(bool state) const{
     return std::make_unique<ClassicCell>(getCellX(), getCellY(), state);
